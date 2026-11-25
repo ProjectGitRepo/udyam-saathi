@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), var(--font-deva), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-serif), var(--font-deva-serif), Georgia, serif;
+  --color-cream: #f5f0e6;
+  --color-saffron: #e2741d;
+  --color-saffron-soft: #fbeadb;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-canvas: #f6f6f4;
+  --color-surface: #ffffff;
+  --color-sunken: #f1f0ed;
+  --color-line: #e7e5e0;
+  --color-line-strong: #d6d3cc;
+  --color-ink: #191918;
+  --color-ink-2: #44433f;
+  --color-muted: #7a7871;
+  --color-faint: #a3a19a;
+
+  --color-accent: #1d5a48;
+  --color-accent-hover: #164638;
+  --color-accent-soft: #e9f1ed;
+
+  --color-danger: #b42318;
+  --color-danger-soft: #fdf1f0;
+  --color-warn: #a15c07;
+  --color-warn-soft: #fdf6e7;
+  --color-ok: #17734a;
+  --color-ok-soft: #ebf6ef;
+  --color-info: #1d4f91;
+  --color-info-soft: #edf3fb;
+}
+
+html,
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01", "tnum";
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: #d7e7df;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ---------- Liquid glass (subtle) ---------- */
+.glass {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.32));
+  -webkit-backdrop-filter: blur(22px) saturate(175%);
+  backdrop-filter: blur(22px) saturate(175%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 0 12px rgba(255, 255, 255, 0.25),
+    0 12px 32px -14px rgba(40, 30, 15, 0.3),
+    0 2px 6px -2px rgba(40, 30, 15, 0.08);
+}
+/* soft specular highlight across the top edge */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 20% -30%, rgba(255, 255, 255, 0.75), transparent 55%),
+    radial-gradient(90% 80% at 100% 130%, rgba(255, 255, 255, 0.35), transparent 55%);
+}
+/* tinted glass for the active pill */
+.glass-ink {
+  background: linear-gradient(180deg, rgba(30, 30, 28, 0.9), rgba(25, 25, 24, 0.8));
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 6px 16px -6px rgba(0, 0, 0, 0.45);
+}
+/* frosted panel (readable) for the open Saathi chat */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(30px) saturate(160%);
+  backdrop-filter: blur(30px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 30px 70px -25px rgba(25, 25, 24, 0.45);
+}
+
+/* thin scrollbars for panes */
+.pane-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #d6d3cc transparent;
+}
